@@ -9,5 +9,6 @@ edition = "2021"
 actix-web = "4.4.0"
 dotenv = "0.15.0"
 mongodb = "2.8.0"
-serde = "1.0.193"
+serde = { version = "*", features = ["derive"] }
 uuid = "1.6.1"
+async-stripe = {version = "*" ,features = ["runtime-tokio-hyper"]}
