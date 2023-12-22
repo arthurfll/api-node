@@ -1,11 +1,13 @@
 [package]
-name = "backend"
+name = "legado_api"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dotenv = "*"
 actix-web = "4.4.0"
-mongodb = "*"
+dotenv = "0.15.0"
+mongodb = "2.8.0"
+serde = "1.0.193"
+uuid = "1.6.1"
