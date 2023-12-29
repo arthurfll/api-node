@@ -1,4 +1,4 @@
-passo 1
+passo 1 (ok)
     estrutura básica do projeto
     conectar o dotenv o dotenv
     rodar o servidor
