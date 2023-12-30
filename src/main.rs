@@ -7,7 +7,11 @@ mod routes;
 use actix_web::{ App , HttpServer };
 use std::env;
 
-use routes::LicenceRoute::home;
+use routes::{
+    LicenceRoute
+};
+
+
 
 #[actix_web::main]
 async fn main()-> std::io::Result<()> {
@@ -19,7 +23,7 @@ async fn main()-> std::io::Result<()> {
 
     HttpServer::new(|| {
         App::new()
-            .service(home)
+            .service(LicenceRoute::checkout)
     })
     .bind(format!("127.0.0.1:{}", port))?
     .run()

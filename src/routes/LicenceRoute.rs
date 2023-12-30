@@ -1,8 +1,8 @@
 use actix_web::{get,Responder};
-use crate::controllers::LicenceController::home_controller;
+use crate::controllers::LicenceController;
 
 
-#[get("/")]
-pub async fn home() -> impl Responder {
-    home_controller()
+#[get("/checkout")]
+pub async fn checkout() -> impl Responder {
+    LicenceController::checkout_controller()
 }
