@@ -2,6 +2,19 @@ use actix_web::{ App , HttpServer };
 use std::env;
 use dotenv::dotenv;
 
+use services::{
+    usuario::{
+        login,logout,cadastro
+    },
+    mensagem::{
+        mensagens,enviar
+    },
+    conversa::{
+        conversas,delete
+    }
+};
+
+
 
 #[actix_web::main]
 async fn main()-> std::io::Result<()> {
@@ -13,11 +26,20 @@ async fn main()-> std::io::Result<()> {
 
     HttpServer::new(|| {
         App::new()
+            .service(login)
+            .service(logout)
+            .service(cadastro)
+            .service(mensagens)
+            .service(enviar)
+            .service(conversas)
+            .service(delete)
     })
     .bind(format!("127.0.0.1:{}", port))?
     .run()
     .await
 }
+
+
 
 mod database;
 mod middlewares;
