@@ -1,5 +1,5 @@
 [package]
-name = "legado_licence_api"
+name = "api_chat_actix-web"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,7 +9,7 @@ edition = "2021"
 actix-web = "4.4.1"
 dotenv = "0.15.0"
 jsonwebtoken = "9.2.0"
-mysql = "24.0.0"
 reqwest = "0.11.23"
 serde = { version = "1.0.193" , features = ["derive"] }
 serde_json = "1.0.108"
+sqlx = { version = "0.7.3", features = ["mysql"] }
