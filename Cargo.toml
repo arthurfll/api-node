@@ -6,9 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+actix-cors = "*"
 actix-web = "4.5.1"
+diesel = { version = "2.1.4", features = ["mysql"] }
 dotenv = "0.15.0"
-serde = "1.0.197"
+reqwest = "0.11.24"
+serde =  { version = "*", features = ["derive"] }
 serde_json = "1.0.114"
 sqlx = { version = "*", features = ["mysql", "runtime-tokio-rustls"] }
 tokio = { version = "1", features = ["full"] }
+uuid = "1.7.0"
