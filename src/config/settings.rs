@@ -19,15 +19,9 @@ pub fn address() -> String {
 }
 
 
-// conexão com o mysql ========================================================
+// conexão com o banco de dados ===============================================
 
-pub async fn conn_db() -> MySqlPool {
-    let database_url = env::var("MYSQL_URL")
-        .expect("banco de dados não encontrado");
-    MySqlPool::connect(&database_url)
-        .await
-        .expect("Failed to create a database connection pool")
-}
+
 
 
 // cors header ================================================================

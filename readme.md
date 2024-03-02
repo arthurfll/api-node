@@ -1,6 +1,6 @@
 [X] iniciar o servidor
 [X] conectar as variáveis de ambiente 
-[X] conectar ao MySQL
+[ ] conectar ao MongoDB
 [X] configurar as rotas da aplicação
 [X] configurar os models da aplicação
 [X] configurar os controllers
