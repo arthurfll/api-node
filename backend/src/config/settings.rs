@@ -6,5 +6,3 @@ pub fn get_ip() -> String{
     let addr = format!("{}:{}",ip,port);
     addr
 }
-
-
