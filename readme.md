@@ -1,3 +1,7 @@
+surreal start --log trace --user root --pass root --bind 0.0.0.0:8000 memory
+cargo build
+cargo run
+
 STACK
     TypeScript
         Angular.js
@@ -11,13 +15,13 @@ BACKEND
     [X] iniciar o servidor
     [X] configurar as variáveis de ambiente
     [X] conectar as variáveis de ambiente 
-    [ ] conectar ao Surreal DB
-    [ ] configurar as rotas da aplicação
-    [ ] configurar os models da aplicação
-    [ ] configurar os controllers
+    [X] conectar ao Surreal DB
+    [X] configurar as rotas da aplicação
+    [X] configurar os models da aplicação
+    [X] configurar os controllers
     [ ] configurar o Cors Header
     [ ] fazer uma requisição Post
-    [ ] fazer uma requisição Get
+    [X] fazer uma requisição Get
     [ ] fazer uma requisição Put
     [ ] fazer uma requisição Delete
     [ ] requisitar outras apis

@@ -1,5 +1,11 @@
 use serde::{Serialize,Deserialize};
 
+
+#[derive(Serialize,Deserialize)]
+pub struct RequestUser {
+    pub username: String
+}
+
 #[derive(Serialize,Deserialize)]
 pub struct UserCadastro {
     pub username : String,
@@ -11,10 +17,10 @@ pub struct UserCadastro {
 
 #[derive(Serialize,Deserialize)]
 pub struct EditPerfilURL {
-    pub uuid: String
+    pub uuid: String,
 }
 
-#[derive(Serialize,Deserialize)]
+#[derive(Serialize,Deserialize,Debug)]
 pub struct User {
     pub uuid: String,
     pub username : String,
@@ -24,10 +30,10 @@ pub struct User {
     pub password : String
 }
 
-impl Pizza {
-    pub fn new(username: String, email: String, first_name: String, last_name: String, password: String) -> User {
+impl User {
+    pub fn new(uuid: String, username: String, email: String, first_name: String, last_name: String, password: String) -> User {
         User {
-            uuid,username,first_name,last_name, password
+            uuid,username,email, first_name,last_name, password
         }
     }
 }

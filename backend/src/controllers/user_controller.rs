@@ -1,29 +1,26 @@
 use actix_web::{
-    get, post, delete, patch, web::Path,
-    HttpResponse, Responder,web::Json
+    get, post, delete, patch,
+    HttpResponse, Responder,web::{Data,Json,Path}
 };
-use crate::models::user_model::{UserCadastro,EditPerfilURL};
-
+use crate::models::user_model::{UserCadastro,EditPerfilURL, User,RequestUser};
+use crate::config::database::Database;
 
 
 #[get("/all_users")]
-async fn all_users(db: Data<Database>) -> impl Responder {
-    let users = db.get_all_users.await;
-    match users {
-        Some(found_users) => HttpResponse::Ok().body(format!("{:?}",found_users));
-        None => HttpResponse::Ok().body("Error!")
-    }
+pub async fn all_users(db: Data<Database>) -> impl Responder {
+    let users = db.get_all_users().await;
+    HttpResponse::Ok().body(format!("{:?}",users))
 }
 
 
 #[post("/cadastro")]
 async fn cadastro(body: Json<UserCadastro>) -> impl Responder {
 
-    let username = body.username.clone();
-    let email = body.email.clone();
-    let first_name = body.first_name.clone();
-    let last_name = body.last_name.clone();
-    let password = body.password.clone();
+//    let username = body.username.clone();
+//    let email = body.email.clone();
+//    let first_name = body.first_name.clone();
+//    let last_name = body.last_name.clone();
+//    let password = body.password.clone();
 
     HttpResponse::Ok().body("selva")
 }

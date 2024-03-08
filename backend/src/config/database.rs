@@ -2,6 +2,7 @@ use surrealdb::engine::remote::ws::{Client, Ws};
 use surrealdb::opt::auth::Root;
 use surrealdb::{Error ,Surreal};
 
+use crate::models::user_model::User;
 
 #[derive(Clone)]
 pub struct Database {
@@ -25,11 +26,13 @@ impl Database {
             db_name: String::from("database")
         })
     }
-    pub async fn get_all_users(&self) -> Option<Vec<Pizza>> {
-        let result = self.client.select("user").await;
+
+    pub async fn get_all_users(&self) -> Option<Vec<User>> {
+        let result: Result<Vec<_>, Error>  = self.client.select("user").await;
         match result {
             Ok(all_users) => Some(all_users),
             Err(_) => None,
         }
     }
 }
+
