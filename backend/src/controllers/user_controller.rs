@@ -4,42 +4,53 @@ use actix_web::{
 };
 use crate::models::user_model::{UserCadastro,EditPerfilURL, User,RequestUser};
 use crate::config::database::Database;
+use uuid::Uuid;
 
 
 #[get("/all_users")]
 pub async fn all_users(db: Data<Database>) -> impl Responder {
     let users = db.get_all_users().await;
-    HttpResponse::Ok().body(format!("{:?}",users))
+    HttpResponse::Ok().json(users)
 }
 
 
 #[post("/cadastro")]
-async fn cadastro(body: Json<UserCadastro>) -> impl Responder {
+async fn cadastro(body: Json<UserCadastro>, db: Data<Database>) -> impl Responder {
 
-//    let username = body.username.clone();
-//    let email = body.email.clone();
-//    let first_name = body.first_name.clone();
-//    let last_name = body.last_name.clone();
-//    let password = body.password.clone();
+    let username = body.username.clone();
+    let email = body.email.clone();
+    let first_name = body.first_name.clone();
+    let last_name = body.last_name.clone();
+    let password = body.password.clone();
 
-    HttpResponse::Ok().body("selva")
+    let mut buffer = Uuid::encode_buffer();
+    let new_uuid = Uuid::new_v4()
+        .simple()
+        .encode_lower(&mut buffer);
+
+    let _new_user = db.db_cadastro(User::new(
+        String::from(new_uuid),
+        username,email,first_name,last_name,password
+    )).await;
+
+    HttpResponse::Ok().body("200")
 }
 
 
-#[get("/perfil/{uuid}")]
+#[get("/perfil/{username}")]
 async fn perfil() -> impl Responder {
     HttpResponse::Ok().body("Profile endpoint")
 }
 
 
-#[patch("/edit_user/{uuid}")]
+#[patch("/edit_user/{username}")]
 async fn edit_perfil(edit_perfil_url: Path<EditPerfilURL>) -> impl Responder {
-    let uuid = edit_perfil_url.into_inner().uuid;
+//    let uuid = edit_perfil_url.into_inner().uuid;
     HttpResponse::Ok().body("Edit user endpoint")
 }
 
 
-#[delete("/delete_user/{uuid}")]
+#[delete("/delete_user/{username}")]
 async fn delete_user() -> impl Responder {
     HttpResponse::Ok().body("Delete user endpoint")
 }

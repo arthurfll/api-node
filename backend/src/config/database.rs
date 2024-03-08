@@ -34,5 +34,18 @@ impl Database {
             Err(_) => None,
         }
     }
+
+    pub async fn db_cadastro(&self,new_user: User) -> Option<User> {
+        let created_user = self
+            .client
+            .create(("user",new_user.uuid.clone()))
+            .content(new_user)
+            .await;
+
+        match created_user {
+            Ok(created) => created,
+            Err(_) => None,
+        }
+    }
 }
 
