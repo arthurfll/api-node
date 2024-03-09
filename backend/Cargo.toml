@@ -11,6 +11,7 @@ async-trait = "0.1.77"
 derive_more = "0.99.17"
 dotenv = "0.15.0"
 json = "0.12.4"
+jsonwebtoken = "9.2.0"
 serde = {version = "1.0.197" , features = ["derive"]}
 surrealdb = "1.2.0"
 uuid = "1.7.0"

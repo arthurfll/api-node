@@ -43,10 +43,11 @@ async fn perfil() -> impl Responder {
 }
 
 
-#[patch("/edit_user/{username}")]
-async fn edit_perfil(edit_perfil_url: Path<EditPerfilURL>) -> impl Responder {
-//    let uuid = edit_perfil_url.into_inner().uuid;
-    HttpResponse::Ok().body("Edit user endpoint")
+#[patch("/edit_user/{uuid}")]
+async fn edit_perfil(edit_perfil_url: Path<EditPerfilURL>,db: Data<Database>) -> impl Responder {
+    let uuid = edit_perfil_url.into_inner().uuid;
+    let update_result = db.update_user(uuid).await;
+    HttpResponse::Ok().json(update_result)
 }
 
 

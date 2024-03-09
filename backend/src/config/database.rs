@@ -47,5 +47,38 @@ impl Database {
             Err(_) => None,
         }
     }
-}
 
+    pub async fn update_user(&self, uuid: String) -> Option<User> {
+        let find_user: Result<Option<User>, Error> = self
+            .client
+            .select(("user", &uuid))
+            .await;
+        
+        match find_user {
+            Ok(found) => {
+                match found {
+                    Some(_found_user) => {
+                        let updated_user: Result<Option<User>, Error> = self
+                            .client
+                            .update(("user",&uuid))
+                            .merge(User {
+                                uuid,
+                                username: String::from("A"),
+                                first_name: String::from("B"),
+                                last_name: String::from("C"),
+                                email: String::from("D"),
+                                password: String::from("E")
+                            })
+                            .await;
+                        match updated_user {
+                            Ok(updated) => updated,
+                            Err(_) => None,
+                        }
+                    },
+                    None => None,
+                }
+            },
+            Err(_) => None,
+        }
+    }
+}
