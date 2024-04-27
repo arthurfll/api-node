@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express")
 const app = express()
 const path = require("path")
@@ -7,6 +8,7 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors")
 const corsOptions = require("./config/corsOptions")
 
+console.log(process.env.NODE_ENV)
 
 const PORT = process.env.PORT || 8888
 
@@ -21,6 +23,7 @@ app.use(cookieParser())
 app.use("/", express.static(path.join(__dirname,"/public")))
 
 app.use("/", require("./routes/root"))
+
 
 app.all("*",(req,res) => {
     res.status(404)
